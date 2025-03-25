@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: 'poppins', sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: inset 4px 5px 4px 5px grey;
+        }
+        section {
+            background: white;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            box-shadow: inset   0 0 20px #000000;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: black;
+            color: white;
+        }
+
+        input,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #bmi-message {
+            font-weight: bold;
+            color: #333;
+        }
+        .underweight{
+            background: skyblue;
+        }
+        .normalweight{
+            background: green;
+        }
+        .overweight{
+            background: yellow;
+        }
+        .obesity{
+            background: red;
+        }
+        
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>BMI Calculator</h1>
+        <p>Calculate your Body Mass Index (BMI) and check your health status.</p>
+    </header>
+    <div class="content">
+    <section id="calculator">
+        <h2>BMI Calculator</h2>
+        <label for="height">Height (in cm):</label>
+        <input type="number" id="height" placeholder="Enter height in cm">
+
+        <label for="weight">Weight (in kg):</label>
+        <input type="number" id="weight" placeholder="Enter weight in kg">
+
+        <button onclick="calculateBMI()">Calculate BMI</button>
+
+        <h3>Your BMI: <span id="bmi-result"></span></h3>
+        <p id="bmi-message"></p>
+    </section>
+    
+        </div>
+        <hr style="height:2px;border-width:0;color:black;background-color:black">
+        <section id="bmi-chart">
+            <h2>BMI Chart</h2>
+            <table>
+                <tr>
+                    <th>BMI Range</th>
+                    <th>Category</th>
+                </tr>
+                <tr>
+                    <td>Below 18.5</td>
+                    <td class="underweight">Underweight</td>
+                </tr>
+                <tr>
+                    <td>18.5 - 24.9</td>
+                    <td class="normalweight">Normal weight</td>
+                </tr>
+                <tr>
+                    <td>25 - 29.9</td>
+                    <td class="overweight">Overweight</td>
+                </tr>
+                <tr>
+                    <td>30 and above</td>
+                    <td class="obesity">Obesity</td>
+                </tr>
+            </table>
+    </section>
+
+    <script>
+        function calculateBMI() {
+            let height = document.getElementById("height").value / 100; 
+            let weight = document.getElementById("weight").value;
+            let bmi = (weight / (height * height)).toFixed(2);
+
+            let resultText = "";
+
+            if (bmi < 18.5) {
+                resultText = "You are underweight. Consider a balanced diet.";
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                resultText = "You are in the normal weight range. Keep it up!";
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                resultText = "You are overweight. Consider a healthy lifestyle.";
+            } else {
+                resultText = "You are in the obesity range. Please consult a doctor.";
+            }
+
+            document.getElementById("bmi-result").textContent = bmi;
+            document.getElementById("bmi-message").textContent = resultText;
+        }
+    </script>
+
+</body>
+
+</html>
